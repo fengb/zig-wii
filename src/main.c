@@ -6,6 +6,8 @@
 static void *xfb = NULL;
 static GXRModeObj *rmode = NULL;
 
+void zig_main(void);
+
 //---------------------------------------------------------------------------------
 int main(int argc, char **argv) {
 //---------------------------------------------------------------------------------
@@ -50,6 +52,7 @@ int main(int argc, char **argv) {
 	printf("\x1b[2;0H");
 
 
+	zig_main();
 	printf("Hello World!");
 
 	while(1) {
