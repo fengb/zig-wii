@@ -7,6 +7,7 @@ pub fn build(b: *Builder) void {
     obj.setOutputDir("build");
     obj.linkLibC();
     obj.setLibCFile("libc.txt");
+    obj.addIncludeDir("devkitpro/libogc/include");
     obj.setBuildMode(mode);
     obj.setTarget(.{
         .cpu_arch = .powerpc,
