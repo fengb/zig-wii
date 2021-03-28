@@ -75,7 +75,7 @@ endif
 
 export OFILES_BIN	:=	$(addsuffix .o,$(BINFILES))
 export OFILES_SOURCES := $(CPPFILES:.cpp=.o) $(CFILES:.c=.o) $(sFILES:.s=.o) $(SFILES:.S=.o)
-export OFILES := $(OFILES_BIN) $(OFILES_SOURCES) zig_main.o
+export OFILES := $(OFILES_BIN) $(OFILES_SOURCES) main.o
 
 export HFILES := $(addsuffix .h,$(subst .,_,$(BINFILES)))
 

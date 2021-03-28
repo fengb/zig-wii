@@ -3,7 +3,7 @@ const Builder = std.build.Builder;
 
 pub fn build(b: *Builder) void {
     const mode = b.standardReleaseOptions();
-    const obj = b.addObject("zig_main", "src/main.zig");
+    const obj = b.addObject("main", "src/main.zig");
     obj.setOutputDir("build");
     obj.linkLibC();
     obj.setLibCFile("libc.txt");

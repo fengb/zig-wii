@@ -4,7 +4,7 @@ const c = @import("c.zig");
 var xfb: *c_void = undefined;
 var rmode: *c.GXRModeObj = undefined;
 
-export fn zig_main(argc: c_int, argv: [*]const [*:0]const u8) noreturn {
+export fn main(argc: c_int, argv: [*]const [*:0]const u8) noreturn {
     // Initialise the video system
     c.VIDEO_Init();
 
@@ -16,7 +16,7 @@ export fn zig_main(argc: c_int, argv: [*]const [*:0]const u8) noreturn {
     rmode = c.VIDEO_GetPreferredMode(null);
 
     // Allocate memory for the display in the uncached region
-    xfb = c.memK0ToK1(c.SYS_AllocateFramebuffer(rmode)) orelse unreachable;
+    xfb = c.MEM_K0_TO_K1(c.SYS_AllocateFramebuffer(rmode)) orelse unreachable;
 
     // Initialise the console, required for printf
     c.console_init(xfb, 20, 20, rmode.fbWidth, rmode.xfbHeight, rmode.fbWidth * c.VI_DISPLAY_PIX_SZ);
