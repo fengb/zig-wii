@@ -13,7 +13,7 @@ pub fn build(b: *Builder) void {
         .cpu_arch = .powerpc,
         .os_tag = .freestanding,
         .abi = .eabi,
-        .cpu_model = .{ .explicit = &std.Target.powerpc.cpu.ppc750 },
+        .cpu_model = .{ .explicit = &std.Target.powerpc.cpu.@"750" },
         .cpu_features_add = std.Target.powerpc.featureSet(&.{.hard_float}),
     });
 

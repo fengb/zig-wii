@@ -19,3 +19,7 @@ msvc_lib_dir=
 # The directory that contains `kernel32.lib`.
 # Only needed when targeting MSVC on Windows.
 kernel32_lib_dir=
+
+# The directory that contains `crtbeginS.o` and `crtendS.o`
+# Only needed when targeting Haiku.
+gcc_dir=
