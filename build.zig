@@ -17,13 +17,9 @@ pub fn build(b: *Builder) void {
         .cpu_features_add = std.Target.powerpc.featureSet(&.{.hard_float}),
     });
 
-    const make = b.addSystemCommand(&[_][]const u8{ "docker-compose", "run", "devkitpro", "make" });
-    b.default_step.dependOn(&obj.step);
-    b.default_step.dependOn(&make.step);
-
-    var main_tests = b.addTest("src/main.zig");
-    main_tests.setBuildMode(mode);
-
-    const test_step = b.step("test", "Run library tests");
-    test_step.dependOn(&main_tests.step);
+    const elf = b.addSystemCommand(&[_][]const u8{ "docker-compose", "run", "devkitpro", "/opt/devkitpro/devkitPPC/bin/powerpc-eabi-gcc", "build/main.o", "-g", "-DGEKKO", "-mrvl", "-mcpu=750", "-meabi", "-mhard-float", "-Wl,-Map,.map", "-L/opt/devkitpro/libogc/lib/wii", "-lwiiuse", "-lbte", "-logc", "-lm", "-o", "zig-wii.elf" });
+    const dol = b.addSystemCommand(&[_][]const u8{ "docker-compose", "run", "devkitpro", "elf2dol", "zig-wii.elf", "zig-wii.dol" });
+    b.default_step.dependOn(&dol.step);
+    dol.step.dependOn(&elf.step);
+    elf.step.dependOn(&obj.step);
 }
