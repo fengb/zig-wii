@@ -5,6 +5,9 @@ var xfb: *c_void = undefined;
 var rmode: *c.GXRModeObj = undefined;
 
 export fn main(argc: c_int, argv: [*]const [*:0]const u8) noreturn {
+    _ = argc;
+    _ = argv;
+
     // Initialise the video system
     c.VIDEO_Init();
 

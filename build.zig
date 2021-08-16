@@ -6,7 +6,7 @@ pub fn build(b: *Builder) void {
     const obj = b.addObject("main", "src/main.zig");
     obj.setOutputDir("build");
     obj.linkLibC();
-    obj.setLibCFile("libc.txt");
+    obj.setLibCFile(std.build.FileSource{ .path = "libc.txt" });
     obj.addIncludeDir("vendor/devkitpro/libogc/include");
     obj.setBuildMode(mode);
     obj.setTarget(.{
