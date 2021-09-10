@@ -1,0 +1,19 @@
+// For format details, see https://aka.ms/devcontainer.json.
+{
+	"name": "WiiZig",
+	"build": {
+		"dockerfile": "Dockerfile",
+	},
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+		"zigLanguageClient.path": "/opt/zls/zig-out/bin/zls"
+	},
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"tiehuis.zig",
+		"augusterame.zls-vscode",
+		"prime31.zig"
+	],
+}
