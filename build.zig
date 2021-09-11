@@ -17,8 +17,8 @@ pub fn build(b: *Builder) void {
         .cpu_features_add = std.Target.powerpc.featureSet(&.{.hard_float}),
     });
 
-    const elf = b.addSystemCommand(&[_][]const u8{ "docker-compose", "run", "devkitpro", "/opt/devkitpro/devkitPPC/bin/powerpc-eabi-gcc", "build/main.o", "-g", "-DGEKKO", "-mrvl", "-mcpu=750", "-meabi", "-mhard-float", "-Wl,-Map,.map", "-L/opt/devkitpro/libogc/lib/wii", "-lwiiuse", "-lbte", "-logc", "-lm", "-o", "zig-wii.elf" });
-    const dol = b.addSystemCommand(&[_][]const u8{ "docker-compose", "run", "devkitpro", "elf2dol", "zig-wii.elf", "zig-wii.dol" });
+    const elf = b.addSystemCommand(&[_][]const u8{ "/opt/devkitpro/devkitPPC/bin/powerpc-eabi-gcc", "build/main.o", "-g", "-DGEKKO", "-mrvl", "-mcpu=750", "-meabi", "-mhard-float", "-Wl,-Map,build/.map", "-L/opt/devkitpro/libogc/lib/wii", "-lwiiuse", "-lbte", "-logc", "-lm", "-o", "build/zig-wii.elf" });
+    const dol = b.addSystemCommand(&[_][]const u8{ "elf2dol", "build/zig-wii.elf", "build/zig-wii.dol" });
     b.default_step.dependOn(&dol.step);
     dol.step.dependOn(&elf.step);
     elf.step.dependOn(&obj.step);
