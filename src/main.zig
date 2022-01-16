@@ -1,7 +1,7 @@
 const std = @import("std");
 const c = @import("c.zig");
 
-var xfb: *c_void = undefined;
+var xfb: *anyopaque = undefined;
 var rmode: *c.GXRModeObj = undefined;
 
 export fn main(argc: c_int, argv: [*]const [*:0]const u8) noreturn {
